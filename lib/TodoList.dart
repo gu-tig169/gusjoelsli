@@ -22,14 +22,14 @@ class TodoList extends StatelessWidget {
         title: Text(note.message,
         style: TextStyle(
         decoration: (
-          note.completed 
+          note.done 
           ? TextDecoration.lineThrough
           : TextDecoration.none),
         ),
         ),
-        value: note.completed,
+        value: note.done,
         onChanged: (bool checked) {
-          Provider.of<MyState>(context, listen: false).changeCheckboxValue(note); 
+          Provider.of<MyState>(context, listen: false).changeCheckboxValue(note, !note.done); 
         },
 
       secondary: IconButton(icon: Icon(Icons.close),
