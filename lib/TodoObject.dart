@@ -1,39 +1,66 @@
 import 'package:flutter/material.dart';
-
+import 'api.dart';
 
 class Todo {
+  String id;
   String message;
-  bool completed;
-  bool todoToggle;
+  bool done;
+  
+  Todo({this.id, this.message, this.done = false});
 
-  Todo({
-    this.message,
-    this.completed = false,
-    this.todoToggle
-  }) : super();
+  static Map<String, dynamic> toJson(Todo note) {
+    return {
+      'title': note.message,
+      'done': note.done,
+    };
+  }
 
   void checkboxValue() {
-    completed =! completed;
+    this.done =! this.done;
+  }
+
+  static Todo fromJson(Map<String, dynamic> json) {
+    return Todo(
+      id: json['id'],
+      message: json['title'],
+      done: json['done'],
+    );
   }
 }
 
 class MyState extends ChangeNotifier {
-  final List<Todo> _todo = [];
+  List<Todo> _todo = [];
   List<Todo> get todo => _todo;
+  
+  String _standardOption = 'All';
+  String get standardOption => _standardOption;
 
-  void addNote(Todo note) {
-    _todo.add(note);
+  Future getList() async {
+    List<Todo> todo = await Api.getNotes();
+    _todo = todo;
     notifyListeners();
   }
 
-  void removeNote(Todo note) {
-    _todo.remove(note);
+  void addNote(Todo note) async {
+    await Api.addNotes(note);
+    await getList();
+  }
+
+  void removeNote(Todo note) async {
+    await Api.removeNote(note.id);
+    await getList();
+  }
+
+  void changeCheckboxValue(Todo note, bool getValue) async{
+    note.done = getValue;
+    await Api.changeStatus(note);
     notifyListeners();
   }
-void changeCheckboxValue(Todo todo) {
-  final todoIndex = _todo.indexOf(todo);
-  _todo[todoIndex].checkboxValue();
-    notifyListeners();
-}
 
+  void setFilterBy(String standardOption) {
+    this._standardOption = standardOption;
+    notifyListeners();
+  }
+  
+  
 }

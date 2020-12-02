@@ -33,7 +33,7 @@ class EditTodoViewState extends State<EditTodoView> {
     return Scaffold(
       appBar: AppBar(
       backgroundColor: Colors.amber, 
-        title: Text('Skapa ToDo', style: TextStyle(color: Colors.white, fontSize: 24.0)), //titeln i AppBaren
+        title: Text('Skapa ToDo', style: TextStyle(color: Colors.white, fontSize: 24.0)), 
         ),
       body: Center(
         child: Column(
