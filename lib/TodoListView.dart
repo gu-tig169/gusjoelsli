@@ -12,8 +12,7 @@ class TodoListView extends StatelessWidget {
       appBar: _appBar(context),
       body: Center(
       child:Consumer<MyState>
-      (builder: (context, state, child) => 
-        TodoList(_filterTodo(state.todo, state.standardOption)),),
+      (builder: (context, state, child) => TodoList(_filterTodo(state.todo, state.standardOption)),),
       ),
       floatingActionButton: _editTodoButton(context), 
     );  

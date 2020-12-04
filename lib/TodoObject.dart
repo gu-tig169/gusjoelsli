@@ -23,7 +23,7 @@ class Todo {
     return Todo(
       id: json['id'],
       message: json['title'],
-      done: json['done'],
+      done: json['done'] == null ? false : json['done'],
     );
   }
 }
@@ -61,6 +61,4 @@ class MyState extends ChangeNotifier {
     this._standardOption = standardOption;
     notifyListeners();
   }
-  
-  
 }
