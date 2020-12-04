@@ -61,6 +61,4 @@ class MyState extends ChangeNotifier {
     this._standardOption = standardOption;
     notifyListeners();
   }
-  
-  
 }

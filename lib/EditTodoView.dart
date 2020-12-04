@@ -32,9 +32,9 @@ class EditTodoViewState extends State<EditTodoView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      backgroundColor: Colors.amber, 
+        backgroundColor: Colors.amber, 
         title: Text('Skapa ToDo', style: TextStyle(color: Colors.white, fontSize: 24.0)), 
-        ),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -57,8 +57,8 @@ class EditTodoViewState extends State<EditTodoView> {
         controller: textEditingController,
         textAlign: TextAlign.center, 
         decoration: InputDecoration(
-        border: OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.amber)),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.amber)),
         hintText: 'What are you going to do?',
         errorText: textFieldEmpty ? 'Dont leave the field empty' : null,
        ), 

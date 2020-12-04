@@ -28,8 +28,9 @@ static Future <List<Todo>> getNotes() async {
 }
 
   static Future removeNote(String noteId) async {
-    await http.delete('$API_URL/todos/$noteId?key=$API_KEY');
     print('remove todo');
+    await http.delete('$API_URL/todos/$noteId?key=$API_KEY');
+    print('todo removed');
   }
 
   static Future changeStatus(Todo note) async {
